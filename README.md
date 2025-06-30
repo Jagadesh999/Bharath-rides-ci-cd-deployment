@@ -94,7 +94,7 @@ DevOps Engineer | AWS Cloud | CI/CD Enthusiast
 “Great DevOps isn’t just automation — it’s making your ride smoother.
 Bharath Rides is ours. Let’s engine!”
 
-![image](https://github.com/user-attachments/assets/91ae0341-a6bb-4fd0-a5dd-44ee2ef350c0)
+
 
 
 

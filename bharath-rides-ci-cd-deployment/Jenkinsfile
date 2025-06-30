@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+  tools { maven "Maven3" }
+  environment { SONARQUBE = "SonarQubeServer" }
+  stages {
+    stage("Checkout") {
+      steps {
+        git "https://github.com/jagadesh999/bharath-rides-ci-cd-deployment.git"
+      }
+    }
+    stage("Build") {
+      steps {
+        sh "mvn clean package"
+      }
+    }
+    stage("Code Quality") {
+      steps {
+        withSonarQubeEnv("${SONARQUBE}") {
+          sh "sonar-scanner"
+        }
+      }
+    }
+    stage("Deploy to Tomcat") {
+      steps {
+        sh """
+          curl -T target/bharathrides.war \\
+          http://admin:admin@3.110.45.89:8080/manager/text/deploy?path=/bharathrides&update=true
+        """
+      }
+    }
+  }
+}
